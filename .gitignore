@@ -1,0 +1,60 @@
+# 1. Node.js & Next.js Dependencies
+node_modules/
+.pnpm-store/
+.next/
+.npm/
+.yarn/
+.pnp/
+.pnp.js
+
+# 2. Build Output
+dist/
+build/
+out/
+
+# 3. Logs & Debug Files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+vercel-debug.log*
+
+# 4. Environment Variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# 5. Editor & System Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 6. Docker & Deployment
+docker-compose.override.yml
+docker-compose.dev.yml
+docker-compose.prod.yml
+.dockerignore
+tmp/
+coverage/
+__pycache__/
+
+# 7. Husky & Git Hooks
+.husky/_/
+.husky/_/*
+.husky/pre-commit
+.husky/pre-push
+
+# 8. Monorepo Tools (if using NX/TurboRepo)
+.nx/
+.turbo/
+
+# 9. CI/CD Artifacts
+.github/workflows/*.log
+.github/actions/
+.coverage/
