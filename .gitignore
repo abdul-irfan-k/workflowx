@@ -45,10 +45,10 @@ coverage/
 __pycache__/
 
 # 7. Husky & Git Hooks
-.husky/_/
-.husky/_/*
-.husky/pre-commit
-.husky/pre-push
+# .husky/_/
+# .husky/_/*
+# .husky/pre-commit
+# .husky/pre-push
 
 # 8. Monorepo Tools (if using NX/TurboRepo)
 .nx/
