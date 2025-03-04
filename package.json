@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "@types/node": "^22.13.9",
-    "typescript": "^5.8.2"
+    "eslint": "^9.21.0",
+    "husky": "^9.1.7",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "lint-staged": "^13.0.3"
   }
 }
