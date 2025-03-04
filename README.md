@@ -12,29 +12,8 @@ A MERN stack-based task management system with individual and team collaboration
 workflowx/
 ├── 📁 apps/
 │   ├── 📁 web/                      # Next.js Frontend
-│   │   ├── 📁 public/
-│   │   ├── 📁 src/
-│   │   │   ├── 📁 app/              # App router
-│   │   │   ├── 📁 components/       # UI components
-│   │   │   └── 📁 lib/              # Shared frontend logic
-│   │   ├── 📄 Dockerfile
-│   │   └── 📄 package.json
-│   │
 │   ├── 📁 api-gateway/              # API Gateway
-│   │   ├── 📁 src/
-│   │   │   ├── 📁 routes/           # Route definitions
-│   │   │   └── 📁 middleware/       # Auth, rate limiting
-│   │   └── 📄 Dockerfile
-│   │
 │   ├── 📁 auth-service/             # Authentication Service
-│   │   ├── 📁 src/
-│   │   │   ├── 📁 controllers/
-│   │   │   ├── 📁 models/           # User schema
-│   │   │   ├── 📁 routes/
-│   │   │   └── 📁 database/         # DB connection
-│   │   ├── 📄 Dockerfile
-│   │   └── 📄 package.json
-│   │
 │   ├── 📁 task-service/             # Task Core Service
 │   ├── 📁 notification-service/     # Real-time Notifications
 │   ├── 📁 billing-service/          # Subscription Management
@@ -42,38 +21,22 @@ workflowx/
 │
 ├── 📁 packages/                     # Shared Code
 │   ├── 📁 common/                   # Utilities
-│   │   ├── 📁 logger/
-│   │   └── 📁 error-handler/
 │   ├── 📁 types/                    # Shared TS types
 │   └── 📁 config/                   # ESLint/Prettier configs
 │
 ├── 📁 infra/
-│   ├── 📁 docker/
-│   │   ├── 📁 compose/
-│   │   │   ├── 📁 dev/              # Dev environment
-│   │   │   └── 📁 prod/             # Production setup
-│   │   └── 📁 services/             # Individual service Dockerfiles
-│   ├── 📁 k8s/
-│   │   ├── 📁 overlays/
-│   │   └── 📁 base/
+│   ├── 📁 docker/                   # Docker configurations
+│   ├── 📁 k8s/                      # Kubernetes configurations
 │   └── 📁 databases/                # DB-specific configs
 │
 ├── 📁 .github/
-│   ├── 📁 workflows/
-│   │   ├── 📄 ci.yml                # Continuous Integration
-│   │   ├── 📄 cd.yml                # Deployment
-│   │   └── 📄 security.yml          # Security scans
-│   └── 📄 dependabot.yml
+│   ├── 📁 workflows/                # GitHub Actions workflows
 │
-├── 📁 docs/
-│   ├── 📄 ARCHITECTURE.md           # System design
-│   ├── 📄 API_DOCS.md               # API specifications
+├── 📁 docs/                         # Documentation
 │
-├── 📁 scripts/
-│   ├── 📁 db-migrations/            # Database migration scripts
-│   └── 📁 deployment/               # Deployment helpers
+├── 📁 scripts/                      # Scripts
 │
-├── 📁 .husky/
+├── 📁 .husky/                       # Husky Git hooks
 ├── 📄 .editorconfig              
 ├── 📄 .eslintrc.js
 ├── 📄 .prettierrc
@@ -96,3 +59,4 @@ workflowx/
    git clone https://github.com/abdul-irfan-k/workflowx.git
    cd workflowx
    ```
+````
