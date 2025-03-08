@@ -7,7 +7,8 @@
 
 A MERN stack-based task management system with individual and team collaboration features, offering both free and premium tiers with role-based access control.
 
-## 📂 File Structure 
+## 📂 File Structure
+
 ```
 workflowx/
 ├── 📁 apps/
@@ -37,26 +38,30 @@ workflowx/
 ├── 📁 scripts/                      # Scripts
 │
 ├── 📁 .husky/                       # Husky Git hooks
-├── 📄 .editorconfig              
+├── 📄 .editorconfig
 ├── 📄 .eslintrc.js
 ├── 📄 .prettierrc
-├── 📄 pnpm-workspace.yaml
-├── 📄 turbo.json                    # Turborepo config
+├── 📄 pnpm-workspace.yaml            # Turborepo config
 └── 📄 README.md
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - ![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
 - ![pnpm](https://img.shields.io/badge/pnpm-v8+-yellow)
 - ![MongoDB](https://img.shields.io/badge/MongoDB-v6+-brightgreen)
 - ![Redis](https://img.shields.io/badge/Redis-required-red)
 
 ### Installation
+
 1. Clone the repository:
    ```sh
    git clone https://github.com/abdul-irfan-k/workflowx.git
    cd workflowx
    ```
-````
+
+```
+
+```
