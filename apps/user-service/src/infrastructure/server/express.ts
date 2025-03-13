@@ -1,8 +1,10 @@
 import { createServer, Server } from 'http';
 import express, { Application } from 'express';
+import helmet from 'helmet';
 
 import { PORT } from '../../config/env';
 import logger from '../../utils/logger';
+import userRouter from '../http/route/userRoute';
 
 export class ExpressServer {
   private app: Application;
@@ -17,9 +19,14 @@ export class ExpressServer {
     this.configureErrorHandlers();
   }
 
-  private configureRoutes(): void {}
+  private configureMiddlewares(): void {
+    this.app.use(express.json());
+    this.app.use(helmet());
+  }
 
-  private configureMiddlewares(): void {}
+  private configureRoutes(): void {
+    this.app.use('/api/v1/users/', userRouter);
+  }
 
   private configureErrorHandlers(): void {}
 
