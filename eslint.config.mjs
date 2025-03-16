@@ -12,6 +12,7 @@ export default tseslint.config(
   tseslint.configs.recommended,
   prettierConfig,
   importPlugin.flatConfigs['recommended'],
+
   {
     plugins: {
       'filename-simple': filenameSimple,
@@ -20,12 +21,6 @@ export default tseslint.config(
       parser: tsParser,
     },
     rules: {
-      'filename-simple/naming-convention': [
-        'error',
-        {
-          rule: 'camelCase',
-        },
-      ],
       'import/order': 'error',
       'import/named': 'error',
       'import/no-named-as-default': 'off',
@@ -37,6 +32,30 @@ export default tseslint.config(
         typescript: true,
         node: true,
       },
+    },
+  },
+
+  {
+    ignores: ['**/entities/**/*.ts', '**/models/**/*.ts'],
+    rules: {
+      'filename-simple/naming-convention': [
+        'error',
+        {
+          rule: 'camelCase', // Allow UserEntity.ts instead of User.ts
+        },
+      ],
+    },
+  },
+
+  {
+    files: ['**/entities/**/*.ts', '**/models/**/*.ts'],
+    rules: {
+      'filename-simple/naming-convention': [
+        'error',
+        {
+          rule: 'PascalCase', // Allow UserEntity.ts instead of User.ts
+        },
+      ],
     },
   },
 );
