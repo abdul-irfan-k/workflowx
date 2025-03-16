@@ -1,17 +1,30 @@
-FROM node:latest as base
+# Base image with Node.js 20
+FROM node:20-slim AS base
 
-WORKDIR /home/node/app
+# Enable pnpm globally
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-RUN npm install -g pnpm
+# Build Stage
+FROM base AS build
+COPY . /usr/src/app
+WORKDIR /usr/src/app
 
-COPY package.json  ./
+# Install dependencies with caching
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-RUN pnpm install
+# Build the service
+RUN pnpm run -r build
 
-COPY . .
+# Deploy the apps
+# RUN pnpm deploy --filter=@workflowx/logger --prod /prod/packages/logger
+RUN pnpm deploy  --legacy --filter=@workflowx/user-service --prod /prod/user-service
 
-RUN pnpm run build
-
+# Runtime Stage for app1
+FROM base AS user-service
+COPY --from=build /prod/user-service /prod/user-service
+WORKDIR /prod/user-service
 EXPOSE 3000
+CMD [ "pnpm", "start" ]
 
-CMD ["pnpm", "dev"]
