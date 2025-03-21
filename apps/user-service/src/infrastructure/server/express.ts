@@ -2,9 +2,9 @@ import { createServer, Server } from 'http';
 import express, { Application } from 'express';
 import helmet from 'helmet';
 
-import { PORT } from '../../config/env';
-import logger from '../../utils/logger';
-import userRouter from '../http/route/userRoute';
+import { PORT } from '@config/env';
+import logger from '@utils/logger';
+import userRouter from '@infrastructure/http/route/userRoute';
 
 export class ExpressServer {
   private app: Application;

@@ -6,7 +6,28 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@domain/*": [
+        "domain/*"
+      ],
+      "@infrastructure/*": [
+        "infrastructure/*"
+      ],
+      "@application/*": [
+        "application/*"
+      ],
+      "@presentation/*": [
+        "presentation/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+    }
   },
   "exclude": [
     "node_modules"
