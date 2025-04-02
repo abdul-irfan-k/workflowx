@@ -34,6 +34,7 @@ export default tseslint.config(
           caughtErrorsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
     settings: {
       'import/resolver': {
