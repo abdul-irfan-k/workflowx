@@ -61,7 +61,3 @@ workflowx/
    git clone https://github.com/abdul-irfan-k/workflowx.git
    cd workflowx
    ```
-
-```
-
-```
