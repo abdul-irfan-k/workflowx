@@ -1,14 +1,16 @@
 import { IUserEntity } from '@domain/entities';
-import { hashPassword } from '@utils/bcrypt';
+import { comparePassword, hashPassword } from '@utils/bcrypt';
 import { Model, model, Schema } from 'mongoose';
 
-export type IUserModel = Model<IUserEntity, {}, IUserMethods>;
-
 export interface IUserMethods {
-  fullName(): string;
+  getFullName(): string;
+  comparePassword(password: string): Promise<boolean>;
 }
 
-const userSchema = new Schema<IUserEntity, IUserModel, IUserMethods>(
+export interface IUserDocument extends IUserEntity, Document, IUserMethods {}
+export interface IUserModel extends Model<IUserEntity, {}, IUserMethods> {}
+
+const userSchema = new Schema<IUserDocument, {}, IUserMethods>(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -21,9 +23,15 @@ const userSchema = new Schema<IUserEntity, IUserModel, IUserMethods>(
   { timestamps: true },
 );
 
-userSchema.method('fullName', function getFullName() {
-  return this.firstName + ' ' + this.lastName;
-});
+userSchema.methods.getFullName = function (): string {
+  return `${this.firstName} ${this.lastName}`;
+};
+
+userSchema.methods.comparePassword = async function (
+  plainPassword: string,
+): Promise<boolean> {
+  return await comparePassword(plainPassword, this.password);
+};
 
 userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
@@ -32,4 +40,4 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-export const UserModel = model<IUserEntity, IUserModel>('User', userSchema);
+export const UserModel = model<IUserDocument, IUserModel>('User', userSchema);
