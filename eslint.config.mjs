@@ -45,7 +45,11 @@ export default tseslint.config(
   },
 
   {
-    ignores: ['**/entities/**/*.ts', '**/models/**/*.ts'],
+    ignores: [
+      '**/entities/**/*.ts',
+      '**/models/**/*.ts',
+      '**/interfaces/**/*.ts',
+    ],
     rules: {
       'filename-simple/naming-convention': [
         'error',
@@ -57,7 +61,11 @@ export default tseslint.config(
   },
 
   {
-    files: ['**/entities/**/*.ts', '**/models/**/*.ts', '**/interfaces/**/.ts'],
+    files: [
+      '**/entities/**/*.ts',
+      '**/models/**/*.ts',
+      '**/interfaces/**/*.ts',
+    ],
     rules: {
       'filename-simple/naming-convention': [
         'error',
