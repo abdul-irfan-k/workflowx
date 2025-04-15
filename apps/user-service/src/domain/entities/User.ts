@@ -3,7 +3,7 @@ export interface IUserEntity {
   firstName: string;
   lastName: string;
   email: string;
-  username: string;
+  userName: string;
   password: string;
   phone: string;
   isDeleted: boolean;

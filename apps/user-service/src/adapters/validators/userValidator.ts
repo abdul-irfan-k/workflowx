@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 export type UserSignUpFields = Pick<
   IUserEntity,
-  'firstName' | 'lastName' | 'email' | 'username' | 'password'
+  'firstName' | 'lastName' | 'email' | 'userName' | 'password'
 >;
 
 export const signUpUserSchema: z.ZodType<UserSignUpFields> = z.object({
@@ -13,7 +13,7 @@ export const signUpUserSchema: z.ZodType<UserSignUpFields> = z.object({
     .string()
     .email('Invalid email address')
     .min(1, 'Email cannot be empty'),
-  username: z.string().trim().min(2, 'Username cannot be empty'),
+  userName: z.string().trim().min(2, 'Username cannot be empty'),
   password: z.string().min(8, 'Password must be at least 8 characters long'),
   phone: z.string().optional(),
 });
