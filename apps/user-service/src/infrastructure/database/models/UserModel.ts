@@ -4,7 +4,6 @@ import { Model, model, Schema } from 'mongoose';
 
 export interface IUserMethods {
   getFullName(): string;
-  comparePassword(password: string): Promise<boolean>;
 }
 
 export interface IUserDocument extends IUserEntity, Document, IUserMethods {}
@@ -26,18 +25,5 @@ const userSchema = new Schema<IUserDocument, {}, IUserMethods>(
 userSchema.methods.getFullName = function (): string {
   return `${this.firstName} ${this.lastName}`;
 };
-
-userSchema.methods.comparePassword = async function (
-  plainPassword: string,
-): Promise<boolean> {
-  return await comparePassword(plainPassword, this.password);
-};
-
-userSchema.pre('save', async function (next) {
-  if (this.isModified('password')) {
-    this.password = await hashPassword(this.password);
-  }
-  next();
-});
 
 export const UserModel = model<IUserDocument, IUserModel>('User', userSchema);
