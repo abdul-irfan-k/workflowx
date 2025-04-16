@@ -15,6 +15,11 @@
 │ │ ├── 📁 errors/
 │ │ └── 📁 interfaces/
 │ │
+│ ├── 📁 adapters/
+│ │ ├── 📁 controllers/
+│ │ ├── 📁 validators/
+│ │ └── 📁 serializers/
+│ │
 │ ├── 📁 infrastructure/        # External Concerns
 │ │ ├── 📁 database/
 │ │ │ ├── 📁 models/
@@ -27,11 +32,6 @@
 │ │ ├── 📁 messaging/
 │ │ ├── 📁 providers/
 │ │ └── 📁 cache/
-│ │
-│ ├── 📁 presentation/          # API Layer
-│ │ ├── 📁 controllers/
-│ │ ├── 📁 validators/
-│ │ ├── 📁 serializers/
 │ │
 │ ├── 📁 di/                    # Dependency injection container
 │ ├── 📁 config/                # Configuration management
