@@ -4,6 +4,15 @@ interface LoggerOption {
   env: string;
 }
 
+/**
+ * Creates a Winston logger based on the environment.
+ *
+ * In development, it logs everything to the console.
+ * In production, it logs to the console and also saves logs to files.
+ *
+ * @param {LoggerOption} [options] - Optional configuration for the logger.
+ * @returns {winston.Logger} A configured winston.Logger instance.
+ */
 export function createLogger(options?: LoggerOption): winston.Logger {
   const env = options?.env || 'development';
   const isProduction = env === 'production';
