@@ -25,7 +25,7 @@ export class ExpressServer {
   }
 
   private configureRoutes(): void {
-    this.app.use('/api/v1/users/', AuthRoutes.getRoutes());
+    this.app.use('/api/v1/users/', new AuthRoutes().getRoutes());
   }
 
   private configureErrorHandlers(): void {}

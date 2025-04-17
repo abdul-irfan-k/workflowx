@@ -1,15 +1,22 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { signInUserSchema, signUpUserSchema } from 'adapters/validators';
 import { schemaValidator } from '../middleware/schemaValidator';
 
 export class AuthRoutes {
-  static getRoutes(): express.Router {
-    const router = express.Router();
+  private router: Router;
 
-    router.post('/signup', schemaValidator(signUpUserSchema));
+  constructor() {
+    this.router = express.Router();
+    this.configureRoutes();
+  }
 
-    router.post('/signin', schemaValidator(signInUserSchema));
+  configureRoutes(): void {
+    this.router.post('/signup', schemaValidator(signUpUserSchema));
 
-    return router;
+    this.router.post('/signin', schemaValidator(signInUserSchema));
+  }
+
+  getRoutes(): express.Router {
+    return this.router;
   }
 }
