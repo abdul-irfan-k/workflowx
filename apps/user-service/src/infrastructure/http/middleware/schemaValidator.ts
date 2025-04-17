@@ -2,6 +2,11 @@ import { NextFunction, Request, Response } from 'express';
 import { AnyZodObject, z } from 'zod';
 import logger from '@utils/logger';
 
+/**
+ * Middleware to validate request body using Zod schema.
+ * @param validationSchema Zod schema to validate against
+ * @returns Middleware function
+ */
 export const schemaValidator = (
   validationSchema: z.AnyZodObject | z.ZodOptional<AnyZodObject>,
 ) => {
