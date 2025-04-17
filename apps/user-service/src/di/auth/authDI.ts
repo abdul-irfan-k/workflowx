@@ -1,10 +1,10 @@
+import { SignInController, SignUpController } from '@adapters/controllers/auth';
 import { SigninUseCase, SignupUseCase } from '@application/use-cases/auth';
 import { UserModel } from '@infrastructure/database/models';
 import { UserRepository } from '@infrastructure/database/repositories/userRepository';
 import { CookieService } from '@infrastructure/services/cookie-service/cookieService';
 import { JwtAuthService } from '@infrastructure/services/jwt-auth-service/jwtAuthService';
 import { BCryptPasswordService } from '@infrastructure/services/password-service/passwordService';
-import { SignInController, SignUpController } from 'adapters/controllers/auth';
 
 export const createAuthDependencies = () => {
   // repositories
