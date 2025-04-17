@@ -1,16 +1,22 @@
 import { NextFunction, Request, Response } from 'express';
-import { AnyZodObject, z } from 'zod';
+import { z } from 'zod';
 import logger from '@utils/logger';
 
 /**
  * Middleware to validate request body using Zod schema.
+ *
+ * On successful validation, attaches the parsed data to req.body and calls next()`.
+ * On failure, sends a 400 response with validation errors.
+ *
  * @param validationSchema Zod schema to validate against
  * @returns Middleware function
  */
-export const schemaValidator = (
-  validationSchema: z.AnyZodObject | z.ZodOptional<AnyZodObject>,
-) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+export const schemaValidator = (validationSchema: z.ZodSchema) => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
     try {
       const validatedData = await validationSchema.parseAsync(req.body);
       req.body = validatedData;
@@ -30,10 +36,11 @@ export const schemaValidator = (
         });
       }
 
-      return res.status(400).json({
+      res.status(400).json({
         status: 'failed',
         error: validationError,
       });
+      return;
     }
   };
 };

@@ -4,7 +4,7 @@ import helmet from 'helmet';
 
 import { PORT } from '@config/env';
 import logger from '@utils/logger';
-import userRouter from '@infrastructure/http/route/userRoute';
+import { AuthRoutes } from '@infrastructure/http/routes/authRoutes';
 
 export class ExpressServer {
   private app: Application;
@@ -25,7 +25,7 @@ export class ExpressServer {
   }
 
   private configureRoutes(): void {
-    this.app.use('/api/v1/users/', userRouter);
+    this.app.use('/api/v1/users/', AuthRoutes.getRoutes());
   }
 
   private configureErrorHandlers(): void {}
