@@ -9,20 +9,26 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
+      "@adapters/*": [
+        "adapters/*"
+      ],
+      "@application/*": [
+        "application/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@di/*": [
+        "di/*"
+      ],
       "@domain/*": [
         "domain/*"
       ],
       "@infrastructure/*": [
         "infrastructure/*"
       ],
-      "@application/*": [
-        "application/*"
-      ],
       "@presentation/*": [
         "presentation/*"
-      ],
-      "@config/*": [
-        "config/*"
       ],
       "@utils/*": [
         "utils/*"
