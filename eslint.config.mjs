@@ -44,33 +44,27 @@ export default tseslint.config(
     },
   },
 
+  // For general files
   {
-    ignores: [
-      '**/entities/**/*.ts',
-      '**/models/**/*.ts',
-      '**/interfaces/**/*.ts',
-    ],
+    ignores: ['**/interfaces/**/*.ts'],
     rules: {
       'filename-simple/naming-convention': [
         'error',
         {
-          rule: 'camelCase', // Allow UserEntity.ts instead of User.ts
+          rule: 'kebab-case',
         },
       ],
     },
   },
 
+  // For interface files
   {
-    files: [
-      '**/entities/**/*.ts',
-      '**/models/**/*.ts',
-      '**/interfaces/**/*.ts',
-    ],
+    files: ['**/interfaces/**/*.ts'],
     rules: {
       'filename-simple/naming-convention': [
         'error',
         {
-          rule: 'PascalCase', // Allow UserEntity.ts instead of User.ts
+          rule: 'PascalCase',
         },
       ],
     },
