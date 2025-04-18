@@ -1,4 +1,4 @@
-import { createAuthDependencies } from './auth/authDI';
+import { createAuthDependencies } from './auth/auth.di';
 
 const authDependencies = createAuthDependencies();
 

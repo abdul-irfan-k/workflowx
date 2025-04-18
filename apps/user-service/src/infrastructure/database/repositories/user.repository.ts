@@ -1,6 +1,6 @@
 import { IUserEntity } from '@domain/entities';
 import { IUserMethods, IUserModel } from '../models';
-import { BaseRepository } from './baseRepository';
+import { BaseRepository } from './base.repository';
 
 export class UserRepository extends BaseRepository<
   IUserEntity,

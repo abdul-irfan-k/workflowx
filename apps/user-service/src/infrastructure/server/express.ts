@@ -4,7 +4,7 @@ import helmet from 'helmet';
 
 import { PORT } from '@config/env';
 import logger from '@utils/logger';
-import { AuthRoutes } from '@infrastructure/http/routes/authRoutes';
+import { AuthRoutes } from '@infrastructure/http/routes/auth.routes';
 
 export class ExpressServer {
   private app: Application;

@@ -1,10 +1,10 @@
 import { SignInController, SignUpController } from '@adapters/controllers/auth';
-import { SigninUseCase, SignupUseCase } from '@application/use-cases/auth';
+import { SignInUseCase, SignUpUseCase } from '@application/use-cases/auth';
 import { UserModel } from '@infrastructure/database/models';
-import { UserRepository } from '@infrastructure/database/repositories/userRepository';
-import { CookieService } from '@infrastructure/services/cookie-service/cookieService';
-import { JwtAuthService } from '@infrastructure/services/jwt-auth-service/jwtAuthService';
-import { BCryptPasswordService } from '@infrastructure/services/password-service/passwordService';
+import { UserRepository } from '@infrastructure/database/repositories/index';
+import { CookieService } from '@infrastructure/services/cookie-service/cookie.service';
+import { JwtAuthService } from '@infrastructure/services/jwt-auth-service/jwt-auth.service';
+import { BCryptPasswordService } from '@infrastructure/services/password-service/password.service';
 
 export const createAuthDependencies = () => {
   // repositories
@@ -16,11 +16,11 @@ export const createAuthDependencies = () => {
   const cookieService = new CookieService();
 
   // use cases
-  const signUpUseCase = new SignupUseCase(
+  const signUpUseCase = new SignUpUseCase(
     userRepository,
     bcryptPasswordService,
   );
-  const signInUseCase = new SigninUseCase(
+  const signInUseCase = new SignInUseCase(
     userRepository,
     bcryptPasswordService,
   );

@@ -3,7 +3,7 @@ import { IUserEntity } from '@domain/entities';
 import { UserRepository } from '@infrastructure/database/repositories/userRepository';
 import { IPasswordService } from '@infrastructure/interfaces/services/password-service/IPasswordService';
 
-export class SignupUseCase implements ISignupUseCase {
+export class SignUpUseCase implements ISignupUseCase {
   private userRepository: UserRepository;
   private passwordService: IPasswordService;
 
