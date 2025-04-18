@@ -1,7 +1,7 @@
 import { SignInController, SignUpController } from '@adapters/controllers/auth';
 import { SignInUseCase, SignUpUseCase } from '@application/use-cases/auth';
 import { UserModel } from '@infrastructure/database/models';
-import { UserRepository } from '@infrastructure/database/repositories/index';
+import { UserRepository } from '@infrastructure/database/repositories';
 import { CookieService } from '@infrastructure/services/cookie-service/cookie.service';
 import { JwtAuthService } from '@infrastructure/services/jwt-auth-service/jwt-auth.service';
 import { BCryptPasswordService } from '@infrastructure/services/password-service/password.service';

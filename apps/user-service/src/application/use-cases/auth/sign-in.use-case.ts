@@ -1,6 +1,6 @@
 import { ISigninUseCase } from '@application/interfaces/use-cases/ISigninUseCase';
 import { IUserEntity } from '@domain/entities';
-import { UserRepository } from '@infrastructure/database/repositories/userRepository';
+import { UserRepository } from '@infrastructure/database/repositories';
 import { IPasswordService } from '@infrastructure/interfaces/services/password-service/IPasswordService';
 
 export class SignInUseCase implements ISigninUseCase {
