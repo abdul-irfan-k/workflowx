@@ -42,9 +42,19 @@ export class SignUpController {
         httpOnly: true,
       });
 
+      const responseData = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        userName: user.userName,
+      };
       res.status(201).json({
         message: 'User created successfully',
         success: true,
+        data: {
+          user: responseData,
+        },
       });
     } catch (error) {
       console.error('Signup Error:', error);

@@ -15,13 +15,15 @@ export class AuthRoutes {
     this.router.post(
       '/signup',
       schemaValidator(signUpUserSchema),
-      dependencies.auth.controllers.signUpController.handle,
+      (req, res, next) =>
+        dependencies.auth.controllers.signUpController.handle(req, res, next),
     );
 
     this.router.post(
       '/signin',
       schemaValidator(signInUserSchema),
-      dependencies.auth.controllers.signInController.handle,
+      (req, res, next) =>
+        dependencies.auth.controllers.signInController.handle(req, res, next),
     );
   }
 

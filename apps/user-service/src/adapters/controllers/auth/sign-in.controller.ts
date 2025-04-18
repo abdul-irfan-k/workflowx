@@ -37,9 +37,19 @@ export class SignInController {
         httpOnly: true,
       });
 
+      const responseData = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        userName: user.userName,
+      };
       res.status(200).json({
         message: 'User signed in successfully',
         success: true,
+        data: {
+          user: responseData,
+        },
       });
     } catch (error) {
       res.status(400).json({
