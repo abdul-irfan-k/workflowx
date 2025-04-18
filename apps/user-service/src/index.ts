@@ -1,6 +1,5 @@
 import { MongoDB } from '@infrastructure/database/config/mongo-db.config';
 import { ExpressServer } from '@infrastructure/server/express';
-import { PORT } from '@config/env';
 import logger from '@utils/logger';
 
 async function bootstrap() {
@@ -9,8 +8,6 @@ async function bootstrap() {
     await MongoDB.connect();
 
     new ExpressServer().start();
-
-    logger.info(`Server is running on port ${PORT}`);
   } catch (error) {
     logger.error('Failed to start the application:', error);
     process.exit(1);
