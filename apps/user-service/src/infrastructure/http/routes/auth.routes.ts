@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import { signInUserSchema, signUpUserSchema } from '@adapters/validators';
 import { dependencies } from '@di/index';
-import { schemaValidator } from '../middleware/schema.validator';
+import { schemaValidator } from '../middleware';
 
 export class AuthRoutes {
   private router: Router;
