@@ -1,4 +1,4 @@
-import { ICustomError } from './interfaces/CustomError';
+import { ICustomError } from './interfaces/ICustomError';
 
 export class BadRequestError extends Error implements ICustomError {
   message: string;
