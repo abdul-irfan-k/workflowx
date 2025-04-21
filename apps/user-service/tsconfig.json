@@ -18,6 +18,12 @@
       "@config/*": [
         "config/*"
       ],
+      "@constants": [
+        "constants"
+      ],
+      "@constants/*": [
+        "constants/*"
+      ],
       "@di/*": [
         "di/*"
       ],

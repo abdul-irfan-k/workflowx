@@ -1,6 +1,8 @@
 import { ISigninUseCase } from '@application/interfaces/use-cases/ISigninUseCase';
+import { HttpStatusCode } from '@constants';
 import { IUserEntity } from '@domain/entities';
 import { UserRepository } from '@infrastructure/database/repositories';
+import { HttpError } from '@infrastructure/http/error';
 import { IPasswordService } from '@infrastructure/interfaces/services/password-service/IPasswordService';
 
 export class SignInUseCase implements ISigninUseCase {
@@ -21,24 +23,37 @@ export class SignInUseCase implements ISigninUseCase {
     password: string;
   }): Promise<IUserEntity> {
     if (!data.password) {
-      throw new Error('Password is required');
+      throw new HttpError({
+        message: '',
+        statusCode: HttpStatusCode.BAD_REQUEST,
+      });
     }
 
     if (!data.email && !data.userName) {
-      throw new Error('Email or username must be provided');
+      throw new HttpError({
+        message: 'Please provide email or username',
+        statusCode: HttpStatusCode.BAD_REQUEST,
+      });
     }
 
     const user = await this.userRepository.findOne({ email: data.email });
 
     if (!user) {
-      throw new Error('User not found');
+      throw new HttpError({
+        statusCode: HttpStatusCode.NOT_FOUND,
+        message: 'User not found',
+      });
     }
 
-    const isVaildPassword = await this.passwordService.verifyPassword(
+    const isValidPassword = await this.passwordService.verifyPassword(
       data.password,
       user.password,
     );
-    if (!isVaildPassword) throw new Error('Please provide valid password');
+    if (!isValidPassword)
+      throw new HttpError({
+        statusCode: HttpStatusCode.UNAUTHORIZED,
+        message: 'Invalid password',
+      });
 
     return user;
   }

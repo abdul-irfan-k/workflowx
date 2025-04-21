@@ -3,6 +3,7 @@ import { ICookieService } from '@infrastructure/interfaces/services/cookie-servi
 import { IJwtAuthService } from '@infrastructure/interfaces/services/jwt-auth-service/IJWTAuthService';
 import { NextFunction, Request, Response } from 'express';
 import { IUserEntity } from '@domain/entities'; // Import IUserEntity
+import { HttpStatusCode } from '@constants';
 
 export class SignUpController {
   private signUpUseCase: ISignupUseCase;
@@ -19,7 +20,7 @@ export class SignUpController {
     this.cookieService = cookieService;
   }
 
-  async handle(req: Request, res: Response, _next: NextFunction) {
+  async handle(req: Request, res: Response, next: NextFunction) {
     try {
       //eslint-disable-next-line
       //@ts-ignore
@@ -49,7 +50,7 @@ export class SignUpController {
         email: user.email,
         userName: user.userName,
       };
-      res.status(201).json({
+      res.status(HttpStatusCode.CREATED).json({
         message: 'User created successfully',
         success: true,
         data: {
@@ -57,13 +58,7 @@ export class SignUpController {
         },
       });
     } catch (error) {
-      console.error('Signup Error:', error);
-      const errorMessage =
-        error instanceof Error ? error.message : 'An unexpected error occurred';
-      res.status(400).json({
-        message: `Signup failed: ${errorMessage}`,
-        success: false,
-      });
+      next(error);
     }
   }
 }

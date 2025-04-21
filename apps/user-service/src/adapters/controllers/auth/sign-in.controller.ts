@@ -18,7 +18,7 @@ export class SignInController {
     this.cookieService = cookieService;
   }
 
-  async handle(req: Request, res: Response, _next: NextFunction) {
+  async handle(req: Request, res: Response, next: NextFunction) {
     try {
       const userData: { email: string; userName: string; password: string } = {
         email: req.body.email,
@@ -52,10 +52,7 @@ export class SignInController {
         },
       });
     } catch (error) {
-      res.status(400).json({
-        error: error,
-        success: false,
-      });
+      next(error);
     }
   }
 }

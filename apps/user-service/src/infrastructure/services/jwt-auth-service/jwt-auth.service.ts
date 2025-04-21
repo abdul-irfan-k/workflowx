@@ -4,6 +4,8 @@ import {
   JWT_REFRESH_TOKEN_EXPIRES_IN,
   JWT_REFRESH_TOKEN_SECRET,
 } from '@config/env';
+import { HttpStatusCode } from '@constants';
+import { HttpError } from '@infrastructure/http/error';
 import { IJwtAuthService } from '@infrastructure/interfaces/services/jwt-auth-service/IJWTAuthService';
 import jwt, {
   Jwt,
@@ -19,11 +21,25 @@ export class JwtAuthService implements IJwtAuthService {
     secret: Secret | PrivateKey,
     options?: SignOptions,
   ): string {
-    return jwt.sign(payload, secret, options);
+    try {
+      return jwt.sign(payload, secret, options);
+    } catch (error) {
+      throw new HttpError({
+        message: 'Failed to generate token',
+        statusCode: HttpStatusCode.INTERNAL_SERVER_ERROR,
+      });
+    }
   }
 
   verifyToken(token: string, secret: Secret): Jwt | JwtPayload | string {
-    return jwt.verify(token, secret);
+    try {
+      return jwt.verify(token, secret);
+    } catch (error) {
+      throw new HttpError({
+        message: 'Invalid token',
+        statusCode: HttpStatusCode.UNAUTHORIZED,
+      });
+    }
   }
 
   generateAccessToken(payload: string | Buffer | object): string {

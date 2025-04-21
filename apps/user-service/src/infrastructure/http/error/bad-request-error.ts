@@ -1,3 +1,4 @@
+import { ErrorMessages, HttpStatusCode } from '@constants';
 import { BaseHttpError } from './base-http-error';
 
 export class BadRequestError extends BaseHttpError {
@@ -8,8 +9,8 @@ export class BadRequestError extends BaseHttpError {
     logging?: boolean;
   }) {
     super({
-      message: params.message || 'Bad Request',
-      statusCode: params.statusCode || 400,
+      message: params.message || ErrorMessages.BAD_REQUEST,
+      statusCode: params.statusCode || HttpStatusCode.BAD_REQUEST,
       errors: params.errors || [{ message: params.message || 'Bad Request' }],
       logging: params.logging,
     });

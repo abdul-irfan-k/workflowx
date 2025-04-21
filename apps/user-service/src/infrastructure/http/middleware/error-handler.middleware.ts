@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import logger from '@utils/logger';
+import { HttpStatusCode } from '@constants';
 import { BaseHttpError } from '../error/base-http-error';
 
 /**
@@ -10,29 +11,38 @@ import { BaseHttpError } from '../error/base-http-error';
  * @param res - The response object.
  * @param _next - The next function in the middleware chain.
  */
-export const errorHandler = (
+export const globalErrorHandler = (
   error: Error,
   req: Request,
   res: Response,
   _next: NextFunction,
 ) => {
-  if (error instanceof BaseHttpError) {
-    const { errors, logging, message, name, statusCode } = error;
-    if (logging) {
-      logger.error(`${name}: ${message}`);
-    }
+  try {
+    if (error instanceof BaseHttpError) {
+      const { errors, logging, message, name, statusCode } = error;
+      if (logging) {
+        logger.error(`${name}: ${message}`);
+      }
 
-    return res.status(statusCode).json({
-      code: statusCode,
-      message: message,
-      errors,
+      res.status(statusCode).json({
+        code: statusCode,
+        message: message,
+        errors,
+      });
+    } else {
+      logger.error(`Internal Server Error: ${error.message}`);
+      res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+        code: HttpStatusCode.INTERNAL_SERVER_ERROR,
+        message: 'Internal Server Error',
+        status: 'error',
+      });
+    }
+  } catch (error) {
+    logger.error(`Error handling error: ${error}`);
+    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+      code: HttpStatusCode.INTERNAL_SERVER_ERROR,
+      message: 'Internal Server Error',
+      status: 'error',
     });
   }
-
-  logger.error(`Internal Server Error: ${error.message}`);
-  return res.status(500).json({
-    code: 500,
-    message: 'Internal Server Error',
-    status: 'error',
-  });
 };

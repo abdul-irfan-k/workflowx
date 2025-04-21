@@ -1,6 +1,8 @@
 import { ISignupUseCase } from '@application/interfaces/use-cases/ISignupUseCase';
+import { HttpStatusCode } from '@constants';
 import { IUserEntity } from '@domain/entities';
 import { UserRepository } from '@infrastructure/database/repositories';
+import { HttpError } from '@infrastructure/http/error';
 import { IPasswordService } from '@infrastructure/interfaces/services/password-service/IPasswordService';
 
 export class SignUpUseCase implements ISignupUseCase {
@@ -22,7 +24,10 @@ export class SignUpUseCase implements ISignupUseCase {
     });
 
     if (existingUser) {
-      throw new Error('User already exists');
+      throw new HttpError({
+        statusCode: HttpStatusCode.CONFLICT,
+        message: 'User already exists',
+      });
     }
 
     const hashedPassword = await this.passwordService.hashPassword(
