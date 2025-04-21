@@ -1,23 +1,17 @@
-import { ICustomError } from './interfaces/ICustomError';
+import { BaseHttpError } from './base-http-error';
 
-export class BadRequestError extends Error implements ICustomError {
-  message: string;
-  errors: Array<{ message: string; context?: Record<string, string> }>;
-  statusCode: number;
-  logging: boolean;
-
+export class BadRequestError extends BaseHttpError {
   constructor(params: {
     message?: string;
     errors?: Array<{ message: string; context?: Record<string, string> }>;
     statusCode?: number;
     logging?: boolean;
   }) {
-    super(params.message || 'Bad Request');
-    this.message = params.message || 'Bad Request';
-    this.errors = params.errors || [{ message: this.message }];
-    this.statusCode = params.statusCode || 400;
-    this.logging = params.logging || false;
-
-    Object.setPrototypeOf(this, BadRequestError.prototype);
+    super({
+      message: params.message || 'Bad Request',
+      statusCode: params.statusCode || 400,
+      errors: params.errors || [{ message: params.message || 'Bad Request' }],
+      logging: params.logging,
+    });
   }
 }
