@@ -25,6 +25,10 @@ export class AuthRoutes {
       (req, res, next) =>
         dependencies.auth.controllers.signInController.handle(req, res, next),
     );
+
+    this.router.post('/signout', (req, res, next) =>
+      dependencies.auth.controllers.signOutController.handle(req, res, next),
+    );
   }
 
   getRoutes(): express.Router {

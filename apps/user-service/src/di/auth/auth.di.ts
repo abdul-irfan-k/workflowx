@@ -1,5 +1,13 @@
-import { SignInController, SignUpController } from '@adapters/controllers/auth';
-import { SignInUseCase, SignUpUseCase } from '@application/use-cases/auth';
+import {
+  SignInController,
+  SignOutController,
+  SignUpController,
+} from '@adapters/controllers/auth';
+import {
+  SignInUseCase,
+  SignOutUseCase,
+  SignUpUseCase,
+} from '@application/use-cases/auth';
 import { UserModel } from '@infrastructure/database/models';
 import { UserRepository } from '@infrastructure/database/repositories';
 import { CookieService } from '@infrastructure/services/cookie-service/cookie.service';
@@ -24,6 +32,7 @@ export const createAuthDependencies = () => {
     userRepository,
     bcryptPasswordService,
   );
+  const signOutUseCase = new SignOutUseCase();
 
   // controllers
   const signUpController = new SignUpController(
@@ -34,6 +43,10 @@ export const createAuthDependencies = () => {
   const signInController = new SignInController(
     signInUseCase,
     jwtAuthService,
+    cookieService,
+  );
+  const signOutController = new SignOutController(
+    signOutUseCase,
     cookieService,
   );
 
@@ -49,10 +62,12 @@ export const createAuthDependencies = () => {
     useCases: {
       signUpUseCase,
       signInUseCase,
+      signOutUseCase,
     },
     controllers: {
       signUpController,
       signInController,
+      signOutController,
     },
   };
 };
