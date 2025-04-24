@@ -1,20 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpStatusCode } from '@constants';
 import { IJwtAuthService } from '@infrastructure/interfaces/services/jwt-auth-service/IJWTAuthService';
-import { ICacheService } from '@infrastructure/cache/interfaces/ICacheService';
 import { JWT_ACCESS_TOKEN_SECRET } from '@config/env';
 import logger from '@utils/logger';
 import { HttpError } from '../error';
 
-interface IJwtPaylod {
+interface IJwtPayload {
   id: string;
   email: string;
 }
 
-export const authMiddleware = (
-  jwtAuthService: IJwtAuthService,
-  _cacheService: ICacheService,
-) => {
+export const authMiddleware = (jwtAuthService: IJwtAuthService) => {
   return (req: Request, _res: Response, next: NextFunction) => {
     try {
       const authHeader = req.headers.authorization;
@@ -37,7 +33,7 @@ export const authMiddleware = (
       const payload = jwtAuthService.verifyToken(
         token,
         JWT_ACCESS_TOKEN_SECRET,
-      ) as IJwtPaylod;
+      ) as IJwtPayload;
 
       if (!payload) {
         throw new HttpError({
@@ -46,8 +42,6 @@ export const authMiddleware = (
         });
       }
 
-      //eslint-disable-next-line
-      //@ts-ignore
       req.user = {
         id: payload.id,
         email: payload.email,

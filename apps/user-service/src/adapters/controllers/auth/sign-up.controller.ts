@@ -35,7 +35,7 @@ export class SignUpController {
       const user = await this.signUpUseCase.execute(userData as IUserEntity);
 
       const accessToken = this.tokenService.generateAccessToken({
-        userId: user.id,
+        id: user._id,
         email: user.email,
       });
 
@@ -44,7 +44,7 @@ export class SignUpController {
       });
 
       const responseData = {
-        id: user.id,
+        id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
