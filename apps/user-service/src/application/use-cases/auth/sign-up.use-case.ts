@@ -1,4 +1,4 @@
-import { ISignupUseCase } from '@application/interfaces/use-cases/ISignupUseCase';
+import { ISignupUseCase } from '@application/interfaces/use-cases/auth';
 import { HttpStatusCode } from '@constants';
 import { IUserEntity } from '@domain/entities';
 import { UserRepository } from '@infrastructure/database/repositories';

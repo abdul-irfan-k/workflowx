@@ -1,8 +1,8 @@
-import { ISignupUseCase } from '@application/interfaces/use-cases/ISignupUseCase';
+import { ISignupUseCase } from '@application/interfaces/use-cases/auth';
 import { ICookieService } from '@infrastructure/interfaces/services/cookie-service/ICookieService';
 import { IJwtAuthService } from '@infrastructure/interfaces/services/jwt-auth-service/IJWTAuthService';
 import { NextFunction, Request, Response } from 'express';
-import { IUserEntity } from '@domain/entities'; // Import IUserEntity
+import { IUserEntity } from '@domain/entities';
 import { HttpStatusCode } from '@constants';
 
 export class SignUpController {

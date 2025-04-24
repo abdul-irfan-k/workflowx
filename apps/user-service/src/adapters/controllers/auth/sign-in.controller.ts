@@ -1,4 +1,4 @@
-import { ISigninUseCase } from '@application/interfaces/use-cases/ISigninUseCase';
+import { ISigninUseCase } from '@application/interfaces/use-cases/auth';
 import { ICookieService } from '@infrastructure/interfaces/services/cookie-service/ICookieService';
 import { IJwtAuthService } from '@infrastructure/interfaces/services/jwt-auth-service/IJWTAuthService';
 import { NextFunction, Request, Response } from 'express';
