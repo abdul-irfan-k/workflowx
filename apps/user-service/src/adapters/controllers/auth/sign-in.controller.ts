@@ -29,7 +29,7 @@ export class SignInController {
       const user = await this.signInUseCase.execute(userData);
 
       const accessToken = await this.tokenService.generateAccessToken({
-        userId: user.id,
+        id: user._id,
         email: user.email,
       });
 
@@ -38,7 +38,7 @@ export class SignInController {
       });
 
       const responseData = {
-        id: user.id,
+        id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
